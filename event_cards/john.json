@@ -1,0 +1,10 @@
+{
+  "title": "john",
+  "subject": "It's a john!",
+  "actions": [
+    { 
+      "type": "john",
+      "value": 1
+    }
+  ]
+}

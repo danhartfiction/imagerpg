@@ -2,7 +2,6 @@
 
   print "Name: " . $userdata['username'] . "<br>";
   print "Turn Number: " . $userdata['turn'] . "<br>";
-  print "Current Card Inventory: " . implode(", ", $userdata['cards']) . "<br>"; 
   print "<hr>";
 
   # Upkeep
@@ -24,6 +23,7 @@
         break;
     }
   } 
+  require_once('actions/gain_cards.php');
   gain_cards(1);
 
   # Draw an Event Card
@@ -41,46 +41,11 @@
   print "Event: " . $event->title . "<br>";
   print "Subject: " . $event->subject . "<br>";
   foreach ($event->actions as $action) {
-    switch ($action->type) {
-      case 'lose_cards':
-        remove_cards($action->value);
-        break;
-      case 'gain_cards':
-        gain_cards($action->value);
-        break;
-      default:
-        print "<hr>UNKNOWN ACTION TYPE: " . $action->type . "<hr>";
-    }
+    require_once('actions/' . $action->type . '.php');
+    call_user_func($action->type, $action->value);
   }
 
   # Resolve Event Card  
 
-
-function gain_cards($num) {
-  global $userdata, $resource_cards;
-  for ($i=0; $i<$num; $i++) {
-    if (sizeof($userdata['cards']) >= 15) {
-      print "You have too many cards.  You must discard one or more before you can draw new ones.<br>";
-    } else {
-      $random_card = $resource_cards[rand(0, sizeof($resource_cards) - 1)];
-      print "Drawing new card:  " . $random_card . "<br>";
-      array_push($userdata['cards'], $random_card);
-    }
-  }
-}
-
-function remove_cards($num) {
-  global $userdata;
-  for ($i=0; $i<$num; $i++) {
-    if (sizeof($userdata['cards']) > 0) {
-      $random_index = rand(0, sizeof($userdata['cards']) - 1); 
-      print "You have lost card: " . $userdata['cards'][$random_index] . "<br>";
-      unset($userdata['cards'][$random_index]);
-      $userdata['cards'] = array_values($userdata['cards']);
-    } else {
-      print "You do not have any cards to lose.<br>";
-    }
-  }
-}
 
 ?>

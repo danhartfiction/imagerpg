@@ -1,0 +1,21 @@
+[
+  {
+    "name": "fur_type",
+    "type": "multi",
+    "values": [
+      { "value": "short" },
+      { "value": "medium" },
+      { "value": "long" }
+    ]
+  },
+  {
+    "name": "eye_color",
+    "type": "multi",
+    "values": [
+      { "value": "gold" },
+      { "value": "black" },
+      { "value": "green" },
+      { "value": "grey" }
+    ]
+  }
+]
