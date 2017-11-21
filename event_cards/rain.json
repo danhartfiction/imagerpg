@@ -1,0 +1,10 @@
+{
+  "title": "rain",
+  "subject": "It is raining!",
+  "actions": [
+    { 
+      "type": "gain_cards",
+      "value": 1
+    }
+  ]
+}

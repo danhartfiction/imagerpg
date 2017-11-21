@@ -1,0 +1,10 @@
+{
+  "title": "snow",
+  "subject": "It is snowing!",
+  "actions": [
+    { 
+      "type": "lose_cards",
+      "value": 5
+    }
+  ]
+}
